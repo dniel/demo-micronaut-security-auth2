@@ -4,6 +4,17 @@
 This application is a simple example of how to use Micronaut with oauth authorization and authentication for backend and clients.
 It uses the mock-idp as the identity provider to authenticate and authorize the requests.
 
+The local application has a secured endpoint that requires authentication.
+And the application is configured to retrieve a token from the mock-idp before calling
+HTTPBIN and the local application. 
+
+The Application main() function
+* starts the mock-idp
+* starts the application
+* run some tests against the application and httpbin.
+* stops the application
+* stops the mock-idp
+
 ## The output of the application is:
 
 ```terminaloutput
