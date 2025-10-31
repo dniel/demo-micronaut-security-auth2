@@ -1,0 +1,6 @@
+micronaut:
+    application:
+        name: demo
+    openapi:
+        target:
+            file: ./generated-docs/demo-doc.yml
