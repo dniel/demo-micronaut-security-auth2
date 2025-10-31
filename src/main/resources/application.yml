@@ -1,0 +1,46 @@
+micronaut:
+    application:
+        name: demo
+
+    security:
+      token:
+        roles-name: "scope"
+        roles-separator: " "
+        jwt:
+          signatures:
+            jwks:
+              mock-idp:
+                url: "http://localhost:8081/default/jwks"
+      oauth2:
+        clients:
+          mock-idp:
+            client-id: client-id
+            client-secret: client-secret
+            grant-type: client_credentials
+            token:
+              url: "http://localhost:8081/default/token"
+              auth-method: client_secret_post
+            client-credentials:
+              service-id-regex: "httpbin|localhttp"
+
+    http:
+      client:
+        pool:
+          max-concurrent-requests-per-http2-connection: 321
+          max-concurrent-http2-connections: 66
+
+      services:
+        localhttp:
+          url: http://localhost:8080
+
+        httpbin:
+          url: https://httpbin.org
+          pool:
+            max-concurrent-http2-connections: 1
+
+        # This service is used by micronaut-security when calling the IDP to validate
+        # tokens automatically because the name of the service is the same name
+        # as the defined in the micronaut.security.token.jwt.signatures.jwks.mock-idp
+        # configuration property, otherwise it would use the default configuration above.
+        mock-idp:
+          read-timeout: 30s
