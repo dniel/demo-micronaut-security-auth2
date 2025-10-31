@@ -11,7 +11,7 @@ micronaut:
             jwks:
               mock-idp:
                 url: "http://localhost:8081/default/jwks"
-                cache-expiration: 300 # expire jwks file every 5 minutes
+                cache-expiration: 5 # expire jwks file every 5 minutes
       oauth2:
         clients:
           mock-idp:

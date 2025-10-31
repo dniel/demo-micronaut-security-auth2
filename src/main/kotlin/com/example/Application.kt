@@ -6,6 +6,7 @@ import io.micronaut.runtime.Micronaut.run
 import jakarta.inject.Singleton
 import no.nav.security.mock.oauth2.MockOAuth2Server
 import no.nav.security.mock.oauth2.token.DefaultOAuth2TokenCallback
+import java.lang.Thread.sleep
 import kotlin.system.exitProcess
 
 @Singleton
@@ -49,10 +50,14 @@ suspend fun main(args: Array<String>) {
     val httpbinClient = context.getBean(HttpBinClient::class.java)
     httpbinClient.get()
 
+
     try {
         val localClient = context.getBean(LocalClient::class.java)
-        val body = localClient.secured()
-        println("Secured endpoint response: $body")
+        repeat(3){
+            val body = localClient.secured()
+            println("Secured endpoint response: $body")
+            sleep(2500)
+        }
     } catch (e: Exception) {
         println("Error calling secured endpoint: ${e.message}")
     }
