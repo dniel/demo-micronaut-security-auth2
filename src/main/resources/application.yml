@@ -4,6 +4,8 @@ micronaut:
 
     security:
       token:
+        # Add this to parse the "scope" claim from the IDP token
+        # and map it to the "roles" in the Micronaut Principal.
         roles-name: "scope"
         roles-separator: " "
         jwt:
