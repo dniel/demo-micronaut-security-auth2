@@ -12,7 +12,7 @@
     <logger name="no.nav" level="INFO"/>
 
     <logger name="io.micronaut.security" level="DEBUG"/>
-    <logger name="io.micronaut.security.token.jwt.signature.jwks" level="DEBUG"/>
+    <logger name="io.micronaut.security.token.jwt.signature.jwks" level="INFO"/>
 
     <root level="INFO">
         <appender-ref ref="STDOUT" />

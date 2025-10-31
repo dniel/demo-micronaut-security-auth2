@@ -6,11 +6,14 @@ import io.micronaut.runtime.Micronaut.run
 import jakarta.inject.Singleton
 import no.nav.security.mock.oauth2.MockOAuth2Server
 import no.nav.security.mock.oauth2.token.DefaultOAuth2TokenCallback
+import org.slf4j.LoggerFactory
 import java.lang.Thread.sleep
 import kotlin.system.exitProcess
 
 @Singleton
 object Api
+
+private val log = LoggerFactory.getLogger("main")
 
 suspend fun main(args: Array<String>) {
     /**
@@ -20,11 +23,11 @@ suspend fun main(args: Array<String>) {
     val server = MockOAuth2Server()
     server.start(8081)
     val wellKnownUrl = server.wellKnownUrl("default")
-    println("Well-known URL: $wellKnownUrl")
+    log.info("Well-known URL: $wellKnownUrl")
 
     val client = HttpClient.create(wellKnownUrl.toUrl())
     val response = client.toBlocking().retrieve(wellKnownUrl.toString())
-    println("Well-known endpoint response: $response")
+    log.info("Well-known endpoint response: $response")
 
     // close the client when done.
     client.close()
@@ -55,11 +58,11 @@ suspend fun main(args: Array<String>) {
         val localClient = context.getBean(LocalClient::class.java)
         repeat(3){
             val body = localClient.secured()
-            println("Secured endpoint response: $body")
+            log.info("Secured endpoint response: $body")
             sleep(2500)
         }
     } catch (e: Exception) {
-        println("Error calling secured endpoint: ${e.message}")
+        log.info("Error calling secured endpoint: ${e.message}")
     }
 
     /**
