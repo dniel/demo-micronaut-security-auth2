@@ -4,7 +4,7 @@ plugins {
     id("org.jetbrains.kotlin.jvm")
     id("com.google.devtools.ksp")
     id("org.jetbrains.kotlin.plugin.allopen")
-    id("io.micronaut.application") version "4.6.0"
+    id("io.micronaut.application") version "4.6.1"
     id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
 }
 
