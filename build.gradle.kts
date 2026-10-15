@@ -39,7 +39,7 @@ dependencies {
     implementation("io.micronaut.security:micronaut-security")
     implementation("io.micronaut.security:micronaut-security-jwt")
     implementation("io.micronaut.security:micronaut-security-oauth2")
-    implementation("no.nav.security:mock-oauth2-server:6.0.7")
+    implementation("no.nav.security:mock-oauth2-server:6.0.8")
 
     // Parsing av yml
     runtimeOnly("org.yaml:snakeyaml")
